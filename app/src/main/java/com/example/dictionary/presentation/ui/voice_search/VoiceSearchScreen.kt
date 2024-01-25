@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.dictionary.MainActivity
 import com.example.dictionary.databinding.ScreenVoiceSearchBinding
 import com.example.dictionary.utils.capitalizeFirstLetter
+import com.example.dictionary.utils.popBackStack
 
 class VoiceSearchScreen : Fragment(), VoiceSearchContract.View {
 
@@ -67,6 +68,10 @@ class VoiceSearchScreen : Fragment(), VoiceSearchContract.View {
             binding.rightLang.startAnimation(scaleAnimation)
 
             presenter.clickTransfer()
+        }
+
+        binding.icBackBtn.setOnClickListener {
+            popBackStack()
         }
     }
 
