@@ -20,6 +20,7 @@ interface VoiceSearchContract {
         fun showWords(word1: String, word2: String)
         fun changeLang(lang: String)
         fun setLang(lang1: String, lang2: String)
+        fun setConditions(conditions: String)
     }
 
 }

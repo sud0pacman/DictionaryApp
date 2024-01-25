@@ -90,6 +90,10 @@ class VoiceSearchScreen : Fragment(), VoiceSearchContract.View {
         binding.containerLang1.text = binding.containerLang2.text
         binding.containerLang2.text = temp
     }
+
+    override fun setConditions(conditions: String) {
+        binding.tvConditions.text = conditions
+    }
 }
 
 

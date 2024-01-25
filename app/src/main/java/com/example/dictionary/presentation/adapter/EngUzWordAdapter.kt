@@ -136,7 +136,7 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
         view.animate()
             .translationY(0f)
             .setInterpolator(DecelerateInterpolator(2f))
-            .setDuration(900)
+            .setDuration(850)
             .start()
     }
 }

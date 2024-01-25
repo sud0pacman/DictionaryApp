@@ -2,6 +2,7 @@ package com.example.dictionary.presentation.ui.search
 
 import android.database.Cursor
 import android.util.Log
+import com.example.dictionary.data.source.entity.Dictionary
 import java.util.concurrent.Executors
 
 class SearchPresenter(private val view: SearchContract.View) : SearchContract.Presenter {
@@ -45,6 +46,12 @@ class SearchPresenter(private val view: SearchContract.View) : SearchContract.Pr
                 view.showWords(cursor)
             }
 
+        }
+    }
+
+    override fun updateWordMark(dictionary: Dictionary) {
+        executors.execute {
+            model.updateWordMark(dictionary)
         }
     }
 

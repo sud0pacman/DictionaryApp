@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dictionary.R
+import com.example.dictionary.data.source.entity.Dictionary
 import com.example.dictionary.databinding.ItemWordBinding
 import com.example.dictionary.utils.capitalizeFirstLetter
 import com.example.dictionary.utils.createSpannable
@@ -21,30 +23,47 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MySearchViewHolder>() {
 
     lateinit var clickVolume: (String) -> Unit
     lateinit var clickWordItem: (String, String, String) -> Unit
+    lateinit var updateWord: (Dictionary) -> Unit
 
     inner class MySearchViewHolder(private val binding: ItemWordBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(english: String, uzbek: String, transcript: String) {
+        fun bind(dictionary: Dictionary) {
             if (curLang) {
-                if (query != null) binding.word1.text = english.createSpannable(query!!)
-                else binding.word1.text = capitalizeFirstLetter(english)
+                if (query != null) binding.word1.text = dictionary.english.createSpannable(query!!)
+                else binding.word1.text = capitalizeFirstLetter(dictionary.english)
 
-                binding.word2.text = uzbek
+                binding.word2.text = dictionary.uzbek
 
                 binding.root.setOnClickListener {
-                    clickWordItem.invoke(english, uzbek, transcript)
+                    clickWordItem.invoke(dictionary.english, dictionary.uzbek, dictionary.transcript)
                 }
             }
             else {
-                if (query != null) binding.word1.text = uzbek.createSpannable(query!!)
-                else binding.word1.text = capitalizeFirstLetter(uzbek)
+                if (query != null) binding.word1.text = dictionary.uzbek.createSpannable(query!!)
+                else binding.word1.text = capitalizeFirstLetter(dictionary.uzbek)
 
-                binding.word2.text = english
+                binding.word2.text = dictionary.english
 
                 binding.root.setOnClickListener {
-                    clickWordItem.invoke(uzbek, english, transcript)
+                    clickWordItem.invoke(dictionary.uzbek, dictionary.english, dictionary.transcript)
                 }
             }
+
+            binding.icBookmark.setOnClickListener {
+                if (dictionary.is_favourite == 1) {
+                    dictionary.is_favourite = 0
+                    updateWord.invoke(dictionary.copy(is_favourite = 0))
+
+                    binding.icBookmark.setImageResource(R.drawable.ic_bookmark_false)
+                }
+                else {
+                    dictionary.is_favourite = 1
+                    updateWord.invoke(dictionary.copy(is_favourite = 1))
+                    binding.icBookmark.setImageResource(R.drawable.ic_bookmark_true)
+                }
+            }
+
+            if (dictionary.is_favourite == 1) binding.icBookmark.setImageResource(R.drawable.ic_bookmark_true)
         }
 
         init {
@@ -70,11 +89,16 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MySearchViewHolder>() {
         cursor?.let {
             it.moveToPosition(position)
 
+            val id = it.getInt(it.getColumnIndex("id"))
             val english = it.getString(it.getColumnIndex("english"))
-            val uzbek = it.getString(it.getColumnIndex("uzbek"))
+            val type = it.getString(it.getColumnIndex("type"))
             val transcript = it.getString(it.getColumnIndex("transcript"))
+            val uzbek = it.getString(it.getColumnIndex("uzbek"))
+            val countable = it.getString(it.getColumnIndex("countable"))
+            val is_favourite = it.getInt(it.getColumnIndex("is_favourite"))
 
-            holder.bind(english, uzbek, transcript)
+            val dictionaryModel = Dictionary(id, english, type, transcript, uzbek, countable, is_favourite)
+            holder.bind(dictionaryModel)
         }
     }
 

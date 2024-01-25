@@ -64,9 +64,11 @@ class VoiceSearchPresenter(private val view: VoiceSearchContract.View) : VoiceSe
         if (lang) {
             view.changeLang("eng-Eng")
             view.setLang("English", "Uzbek")
+            view.setConditions("Search only one word by voice")
         } else {
             view.changeLang("uz-Uz")
             view.setLang("Uzbek", "English")
+            view.setConditions("Ovoz orqali so'z qidirish")
         }
 
     }

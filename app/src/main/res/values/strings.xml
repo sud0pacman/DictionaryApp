@@ -22,4 +22,8 @@
     <string name="bookmarks">Bookmarks</string>
     <string name="o_zbekcha_inglizcha_lug_at">O\'ZBEKCHA-INGLIZCHA LUG\'AT</string>
     <string name="empty_marks">My bookmark list is empty</string>
+    <string name="voice_search">Voice Search</string>
+    <string name="hello">Hello</string>
+    <string name="salom">Salom</string>
+    <string name="search_only_one_word">Search only one word</string>
 </resources>

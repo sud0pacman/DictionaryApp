@@ -61,8 +61,6 @@ class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
         adapter = SearchAdapter()
 
         binding.rvSearch.adapter = adapter
-        presenter.setLanguage(requireArguments().getInt("currentLang"))
-        if (requireArguments().getInt("currentLang") == 1) adapter.changeTransfer() // presenterda shundoq ham default true shuning uchun 1 bo'lsa ya'ni o'zbek tili bo'lsa o'zgar deb qo'ydim
 
         presenter.getWords()
 
@@ -81,6 +79,7 @@ class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
                     binding.icClose.isVisible = true
                 }
                 else {
+                    presenter.loadWordsByQuery("")
                     binding.icClose.isVisible = false
                 }
             }
@@ -118,6 +117,10 @@ class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
 
         adapter.clickVolume = {
             speak(it)
+        }
+
+        adapter.updateWord = {
+            presenter.updateWordMark(it)
         }
 
         val dialog = Dialog(requireContext())
