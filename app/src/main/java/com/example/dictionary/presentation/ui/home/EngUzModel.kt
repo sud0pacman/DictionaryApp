@@ -1,4 +1,4 @@
-package com.example.dictionary.presentation.ui.home.page.eng_uz
+package com.example.dictionary.presentation.ui.home
 
 import android.database.Cursor
 import com.example.dictionary.data.source.entity.Dictionary

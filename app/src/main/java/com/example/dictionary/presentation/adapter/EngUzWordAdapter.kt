@@ -15,6 +15,7 @@ import com.example.dictionary.domain.AppRepositoryImpl
 import com.example.dictionary.data.source.entity.Dictionary
 import com.example.dictionary.presentation.ui.voice_search.VoiceSearchContract
 import com.example.dictionary.utils.capitalizeFirstLetter
+import com.example.dictionary.utils.createSpannable
 import com.example.dictionary.utils.myLog
 import java.util.concurrent.Executors
 
@@ -26,6 +27,7 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
 
     private var cursor: Cursor? = null
     private var query: String? = null
+    private var curLang: Boolean = true
 
     private var lastAnimatedItemPosition = -1
 
@@ -34,11 +36,25 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(dictionary: Dictionary) {
-            binding.word1.text = capitalizeFirstLetter(dictionary.english)
-            binding.word2.text = dictionary.uzbek
-
             binding.root.setOnClickListener {
                 clickWordItem.invoke(dictionary.english, dictionary.uzbek, dictionary.transcript)
+            }
+
+            if (curLang) {
+                binding.word1.text = capitalizeFirstLetter(dictionary.english)
+                binding.word2.text = dictionary.uzbek
+
+                binding.root.setOnClickListener {
+                    clickWordItem.invoke(dictionary.english, dictionary.uzbek, dictionary.transcript)
+                }
+            }
+            else {
+                binding.word1.text = capitalizeFirstLetter(dictionary.uzbek)
+                binding.word2.text = dictionary.english
+
+                binding.root.setOnClickListener {
+                    clickWordItem.invoke(dictionary.uzbek, dictionary.english, dictionary.transcript)
+                }
             }
 
             binding.icBookmark.setOnClickListener {
@@ -77,6 +93,7 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
     override fun onBindViewHolder(holder: MyWordViewHolder, @SuppressLint("RecyclerView") position: Int) {
 
         if (lastAnimatedItemPosition < position) {
+            Log.d("TTT", "anim $position")
             animateItem(holder.itemView)
             lastAnimatedItemPosition = position
         }
@@ -103,6 +120,14 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
         this.cursor?.close()
         this.cursor = cursor
         this.query = query
+        lastAnimatedItemPosition = -1
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun changeTransfer() {
+        curLang = !curLang
+
         notifyDataSetChanged()
     }
 

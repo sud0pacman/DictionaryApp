@@ -1,4 +1,4 @@
-package com.example.dictionary.presentation.ui.home.page.eng_uz
+package com.example.dictionary.presentation.ui.home
 
 import com.example.dictionary.data.source.entity.Dictionary
 import java.util.concurrent.Executors
