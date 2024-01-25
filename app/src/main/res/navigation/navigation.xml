@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreen">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.dictionary.presentation.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment2"
+            app:destination="@id/searchFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_voiceSearchScreen"
+            app:destination="@id/voiceSearchScreen" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.dictionary.presentation.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment2_to_voiceSearchScreen"
+            app:destination="@id/voiceSearchScreen" />
+        <argument
+            android:name="currentLang"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/voiceSearchScreen"
+        android:name="com.example.dictionary.presentation.ui.voice_search.VoiceSearchScreen"
+        android:label="screen_voice_search"
+        tools:layout="@layout/screen_voice_search" />
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.example.dictionary.presentation.ui.book_mark.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.dictionary.presentation.ui.splash_screen.SplashScreen"
+        android:label="SplashScreen"
+        >
+        <action
+            android:id="@+id/action_splashScreen_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>

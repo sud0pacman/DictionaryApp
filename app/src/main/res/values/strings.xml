@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Dictionary</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="english_uzbek">ENGLISH-UZBEK</string>
+    <string name="uzbek_english">UZBEK-ENGLISH</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dictionary">Dictionary</string>
+    <string name="uzbek">Uzbek</string>
+    <string name="english">English</string>
+    <string name="close">Close</string>
+    <string name="copy">Copy</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="o_zbekcha_inglizcha_lug_at">O\'ZBEKCHA-INGLIZCHA LUG\'AT</string>
+    <string name="empty_marks">My bookmark list is empty</string>
+</resources>
