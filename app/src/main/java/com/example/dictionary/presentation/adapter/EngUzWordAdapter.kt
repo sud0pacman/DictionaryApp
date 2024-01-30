@@ -128,7 +128,7 @@ class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>
     fun changeTransfer() {
         curLang = !curLang
 
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
     }
 
     private fun animateItem(view: View) {

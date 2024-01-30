@@ -28,8 +28,6 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        HomeFragment()
-
         val navController = findNavController()
 
         Handler().postDelayed({
