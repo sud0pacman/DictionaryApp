@@ -1,6 +1,7 @@
 package com.example.dictionary.presentation.ui.splash_screen
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -22,6 +23,9 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requireActivity().window.statusBarColor = Color.parseColor("#008c4d")
+
         _binding = ScreenSplashBinding.inflate(inflater,container,false)
         return binding.root
 

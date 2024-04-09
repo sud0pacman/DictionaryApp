@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -39,12 +40,18 @@ class HomeFragment : Fragment(), EngUzContract.View {
         savedInstanceState: Bundle?
     ): View {
 
+        requireActivity().window.statusBarColor = Color.parseColor("#008c4d")
+
+
         _binding = FragmentHomeNavBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
         initView()
 
         binding.appBarMain.openMenu.setOnClickListener {
@@ -54,16 +61,22 @@ class HomeFragment : Fragment(), EngUzContract.View {
 
         binding.appBarMain.btnSearch.setOnClickListener {
             findNavController().navigate(
-                R.id.action_homeFragment_to_searchFragment2)
+                R.id.action_homeFragment_to_searchFragment2
+            )
         }
 
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_bookmarks -> {
                     findNavController().navigate(R.id.action_homeFragment_to_bookFragment)
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                }
+
+                R.id.nav_voice -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_voiceSearchScreen)
                 }
             }
+
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
 
             return@setNavigationItemSelectedListener true
         }
@@ -113,7 +126,7 @@ class HomeFragment : Fragment(), EngUzContract.View {
 
         adapter.clickWordItem = { english, uzbek, transicript ->
             dialog.show()
-            dialog.window?.setBackgroundDrawable(ColorDrawable( Color.TRANSPARENT))
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             dialog.window?.setGravity(Gravity.CENTER)
 

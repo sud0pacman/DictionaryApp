@@ -36,6 +36,9 @@ class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requireActivity().window.statusBarColor = Color.parseColor("#008c4d")
+
         _binding = ScreenSearchBinding.inflate(inflater, container, false)
         return binding.root
     }

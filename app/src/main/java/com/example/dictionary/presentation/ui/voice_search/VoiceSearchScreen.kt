@@ -1,5 +1,6 @@
 package com.example.dictionary.presentation.ui.voice_search
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,9 @@ class VoiceSearchScreen : Fragment(), VoiceSearchContract.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requireActivity().window.statusBarColor = Color.parseColor("#008c4d")
+
         _binding = ScreenVoiceSearchBinding.inflate(inflater, container, false)
         return binding.root
     }

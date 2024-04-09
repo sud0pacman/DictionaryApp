@@ -6,6 +6,7 @@ import android.content.Intent
 import android.speech.RecognizerIntent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dictionary.utils.StatusBarUtil
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        StatusBarUtil.makeStatusBarTransparent(this)
 
         if (requestCode == REQ_CODE_SPEECH_INPUT) {
             if (resultCode == Activity.RESULT_OK && data != null) {

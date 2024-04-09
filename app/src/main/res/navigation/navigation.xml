@@ -18,11 +18,13 @@
         <action
             android:id="@+id/action_homeFragment_to_bookFragment"
             app:destination="@id/bookFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/searchFragment2"
         android:name="com.example.dictionary.presentation.ui.search.SearchFragment"
-        android:label="SearchFragment" >
+        android:label="SearchFragment"
+        tools:layout="@layout/screen_search">
         <action
             android:id="@+id/action_searchFragment2_to_voiceSearchScreen"
             app:destination="@id/voiceSearchScreen" />
@@ -42,6 +44,7 @@
         android:id="@+id/splashScreen"
         android:name="com.example.dictionary.presentation.ui.splash_screen.SplashScreen"
         android:label="SplashScreen"
+        tools:layout="@layout/screen_splash"
         >
         <action
             android:id="@+id/action_splashScreen_to_homeFragment"
@@ -50,5 +53,6 @@
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
     </fragment>
+
 
 </navigation>

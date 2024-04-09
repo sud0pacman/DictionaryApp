@@ -26,4 +26,6 @@
     <string name="hello">Hello</string>
     <string name="salom">Salom</string>
     <string name="search_only_one_word">Search only one word</string>
+    <string name="info">Info</string>
+    <string name="voice">Voice</string>
 </resources>
