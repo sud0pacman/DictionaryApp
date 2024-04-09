@@ -39,7 +39,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MySearchViewHolder>() {
                 }
             }
             else {
-                if (query != null) binding.word1.text = dictionary.uzbek.createSpannable(query!!)
+                if (query != null) binding.word1.text = capitalizeFirstLetter(dictionary.uzbek).createSpannable(query!!)
                 else binding.word1.text = capitalizeFirstLetter(dictionary.uzbek)
 
                 binding.word2.text = dictionary.english
