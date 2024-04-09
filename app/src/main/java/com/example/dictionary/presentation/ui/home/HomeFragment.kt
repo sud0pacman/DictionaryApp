@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -133,6 +134,9 @@ class HomeFragment : Fragment(), EngUzContract.View {
 
             dialog.findViewById<TextView>(R.id.btn_copy).setOnClickListener {
                 "$english \n$uzbek \n$transicript".copyToClipboard(requireContext())
+
+                Toast.makeText(requireContext(), "Copied", Toast.LENGTH_SHORT).show()
+
                 dialog.dismiss()
             }
 

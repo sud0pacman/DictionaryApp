@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import com.example.dictionary.R
 import com.example.dictionary.databinding.ScreenSearchBinding
 import com.example.dictionary.presentation.adapter.SearchAdapter
 import com.example.dictionary.utils.capitalizeFirstLetter
+import com.example.dictionary.utils.copyToClipboard
 import java.util.Locale
 
 class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
@@ -137,6 +139,15 @@ class SearchFragment : Fragment(R.layout.screen_search), SearchContract.View {
             dialog.findViewById<TextView>(R.id.main_word).text = capitalizeFirstLetter(english)
             dialog.findViewById<TextView>(R.id.sub_word).text = uzbek
             dialog.findViewById<TextView>(R.id.tv_transcription).text = "noun:[${transicript}]"
+
+            dialog.findViewById<TextView>(R.id.btn_copy).setOnClickListener {
+                "$english \n$uzbek \n$transicript".copyToClipboard(requireContext())
+
+                Toast.makeText(requireContext(), "Copied", Toast.LENGTH_SHORT).show()
+
+                dialog.dismiss()
+            }
+
 
             dialog.findViewById<TextView>(R.id.btn_close).setOnClickListener { dialog.dismiss() }
         }
