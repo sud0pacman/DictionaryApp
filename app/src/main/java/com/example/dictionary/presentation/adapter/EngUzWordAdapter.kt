@@ -11,13 +11,8 @@ import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.R
 import com.example.dictionary.databinding.ItemWordBinding
-import com.example.dictionary.domain.AppRepositoryImpl
 import com.example.dictionary.data.source.entity.Dictionary
-import com.example.dictionary.presentation.ui.voice_search.VoiceSearchContract
 import com.example.dictionary.utils.capitalizeFirstLetter
-import com.example.dictionary.utils.createSpannable
-import com.example.dictionary.utils.myLog
-import java.util.concurrent.Executors
 
 class EngUzWordAdapter : RecyclerView.Adapter<EngUzWordAdapter.MyWordViewHolder>() {
 

@@ -1,5 +1,7 @@
 package com.example.dictionary.utils
 
+import android.content.ClipboardManager
+import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
@@ -8,19 +10,35 @@ import android.util.Log
 import java.util.Locale
 import kotlin.jvm.internal.Intrinsics
 
-fun String.createSpannable(query: String): SpannableString {
-    val spannable = SpannableString(capitalizeFirstLetter(this))
-    val startIndex = this.indexOf(query)
-    val endIndex = startIndex + query.length
-    if (startIndex < 0 || endIndex > this.length) return spannable
-    spannable.setSpan(
+//fun String.createSpannable(query: String): SpannableString {
+//    val spannable = SpannableString(capitalizeFirstLetter(this))
+//    val startIndex = this.indexOf(query)
+//    val endIndex = startIndex + query.length
+//    if (startIndex < 0 || endIndex > this.length) return spannable
+//    spannable.setSpan(
+//        ForegroundColorSpan(Color.RED),
+//        startIndex, // start
+//        endIndex, // end
+//        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+//    )
+//    return spannable
+//}
+
+fun String.createSpannable(query : String) : SpannableString {
+    val spannableString = SpannableString(this)
+    val start = this.lowercase().indexOf(query.lowercase())
+    val end = start + query.length
+    if(start < 0 || end > this.length) return spannableString
+    spannableString.setSpan(
         ForegroundColorSpan(Color.RED),
-        startIndex, // start
-        endIndex, // end
+        start,
+        end,
         Spannable.SPAN_EXCLUSIVE_INCLUSIVE
     )
-    return spannable
+
+    return spannableString
 }
+
 
 fun capitalizeFirstLetter(str: String): String {
     Intrinsics.checkNotNullParameter(str, "<this>")
@@ -44,6 +62,13 @@ fun capitalizeFirstLetter(str: String): String {
     )
     return upperCase + substring2
 }
+
+fun String.copyToClipboard(context: Context) {
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clip = android.content.ClipData.newPlainText("", this)
+    clipboard.setPrimaryClip(clip)
+}
+
 
 fun String.myLog() {
     Log.d("TTT", this)

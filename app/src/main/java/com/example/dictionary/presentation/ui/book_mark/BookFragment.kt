@@ -16,14 +16,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentBookBinding
 import com.example.dictionary.domain.AppRepositoryImpl
 import com.example.dictionary.presentation.adapter.BookmarkAdapter
-import com.example.dictionary.presentation.adapter.EngUzWordAdapter
 import com.example.dictionary.utils.capitalizeFirstLetter
-import com.example.dictionary.utils.myLog
 import java.util.Locale
 import java.util.concurrent.Executors
 

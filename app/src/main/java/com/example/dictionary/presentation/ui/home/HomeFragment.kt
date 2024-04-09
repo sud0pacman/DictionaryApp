@@ -11,7 +11,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -21,6 +20,7 @@ import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentHomeNavBinding
 import com.example.dictionary.presentation.adapter.EngUzWordAdapter
 import com.example.dictionary.utils.capitalizeFirstLetter
+import com.example.dictionary.utils.copyToClipboard
 import java.util.Locale
 
 class HomeFragment : Fragment(), EngUzContract.View {
@@ -133,6 +133,11 @@ class HomeFragment : Fragment(), EngUzContract.View {
             dialog.findViewById<TextView>(R.id.main_word).text = capitalizeFirstLetter(english)
             dialog.findViewById<TextView>(R.id.sub_word).text = uzbek
             dialog.findViewById<TextView>(R.id.tv_transcription).text = "noun:[${transicript}]"
+
+            dialog.findViewById<TextView>(R.id.btn_copy).setOnClickListener {
+                "$english \n$uzbek \n$transicript".copyToClipboard(requireContext())
+                dialog.dismiss()
+            }
 
             dialog.findViewById<TextView>(R.id.btn_close).setOnClickListener { dialog.dismiss() }
         }

@@ -29,7 +29,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MySearchViewHolder>() {
 
         fun bind(dictionary: Dictionary) {
             if (curLang) {
-                if (query != null) binding.word1.text = dictionary.english.createSpannable(query!!)
+                if (query != null) binding.word1.text = capitalizeFirstLetter(dictionary.english).createSpannable(query!!)
                 else binding.word1.text = capitalizeFirstLetter(dictionary.english)
 
                 binding.word2.text = dictionary.uzbek
